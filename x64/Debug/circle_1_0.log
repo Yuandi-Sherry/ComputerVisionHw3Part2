@@ -1,7 +1,9 @@
 ﻿  main.cpp
-c:\users\sherry\source\repos\circle_1_0\circle_1_0\circledetector.h(41): warning C4244: “参数”: 从“double”转换到“const unsigned int”，可能丢失数据
-c:\users\sherry\source\repos\circle_1_0\circle_1_0\circledetector.h(70): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
-c:\users\sherry\source\repos\circle_1_0\circle_1_0\circledetector.h(71): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
-c:\users\sherry\source\repos\circle_1_0\circle_1_0\circledetector.h(188): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
-c:\users\sherry\source\repos\circle_1_0\circle_1_0\circledetector.h(189): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+c:\users\sherry\source\repos\circle_1_0\circle_1_0\circledetector.h(44): warning C4244: “参数”: 从“double”转换到“const unsigned int”，可能丢失数据
+c:\users\sherry\source\repos\circle_1_0\circle_1_0\circledetector.h(54): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+c:\users\sherry\source\repos\circle_1_0\circle_1_0\circledetector.h(73): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+c:\users\sherry\source\repos\circle_1_0\circle_1_0\circledetector.h(74): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+c:\users\sherry\source\repos\circle_1_0\circle_1_0\circledetector.h(89): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+c:\users\sherry\source\repos\circle_1_0\circle_1_0\circledetector.h(215): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+c:\users\sherry\source\repos\circle_1_0\circle_1_0\circledetector.h(216): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
   circle_1_0.vcxproj -> C:\Users\Sherry\source\repos\circle_1_0\x64\Debug\circle_1_0.exe

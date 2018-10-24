@@ -21,6 +21,7 @@ private:
 	int height;
 	int maxR;
 	int step;
+	double dia;
 	CImg<unsigned char> img;
 	CImg<unsigned char> result;
 	vector<point> potentialCircle;
@@ -36,8 +37,10 @@ public:
 		this->width = img.width();
 		this->height = img.height();
 		maxR = min(width , height)/2; 
-		step = maxR / 50;
+		dia = sqrt(pow(height,2) + pow(width, 2))/2;
+		step = maxR / 25;
 		cout << "maxR " << maxR << endl; 
+		cout << "dia " << dia << endl;
 		accumulation = CImg<unsigned char>(width, height, ceil(maxR/step) + 1,1);
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
@@ -48,7 +51,7 @@ public:
 			}
 		}
 		vote();
-		filterThershold(maxR/4);
+		filterThershold(maxR /5.5);
 		//findLocalMaximums();
 		drawCircles();
 	}
@@ -81,13 +84,36 @@ public:
 
 	void filterThershold(int threshold) {
 		cout << "filterThershold" << endl;
-		for (int r = 0; r < maxR;  r = r + step) {
+		int maxRadius = 0;
+		bool jumpOut = false;
+		for (int r = floor(maxR/step)*5; r > 0;  r = r + step) {
 			for (int i = r; i < width - r; i++) {
 				for (int j = r; j < height - r; j++) {
 					if(accumulation(i,j,r/ step,0) > threshold) {
+						maxRadius = r;
+						jumpOut = true;
+						break;
+					}
+				}
+				if (jumpOut)
+					break;
+			}
+			if (jumpOut)
+				break;
+ 		}
+		cout << "maxRadius "<< maxRadius << endl;
+
+		for (int r = 0; r < maxR; r = r + step) {
+			for (int i = r; i < width - r; i++) {
+				for (int j = r; j < height - r; j++) {
+					if (accumulation(i, j, r / step, 0) > threshold) {
 						boolean push = true;
 						for (int k = 0; k < potentialCircle.size(); k++) {
-							if (r*0.8 > potentialCircle[k].r) { // 两圆形大小差距过大，小圆直接被替换
+							if (r < maxRadius * 0.5) { // 不符合要求，不用遍历已有
+								push = false;
+								break;
+							}
+							if (r*0.5 > potentialCircle[k].r) { // 两圆形大小差距过大，小圆直接被替换
 								push = false;
 								potentialCircle[k] = point(i, j, r);
 							} else if(sqrt(pow(i - potentialCircle[k].x, 2) + pow(j - potentialCircle[k].y, 2)) < 0.9*(potentialCircle[k].r + r)) { // 两圆形明显相交
@@ -104,8 +130,8 @@ public:
 				}
 			}
 			cout << r << endl;
- 		}
-		cout << potentialCircle.size() << endl;
+		}
+
 	}
 
 	void findLocalMaximums() {
@@ -182,23 +208,21 @@ public:
 	}
 
 	void drawCircles() {
-		cout << "drawCircles" << endl;
+		const double red[] = { 255, 0, 0 };
+		cout << "drawCircles" << potentialCircle.size() << endl;
 		for (int i = 0; i < potentialCircle.size(); i++) {
 			for (int theta = 0; theta < 360; theta++) {
 				int x = potentialCircle[i].x + potentialCircle[i].r * cos(theta*M_PI / 180);
-				int y = potentialCircle[i].y + potentialCircle[i].r * sin(theta*M_PI / 180); 
+				int y = potentialCircle[i].y + potentialCircle[i].r * sin(theta*M_PI / 180);
 				if (x >= -3 && x < width && y >= -3 && y < height) {
-					result(x + 3, y +3, 0, 0) = 255;
-					result(x+3, y+3, 0, 1) = 0;
-					result(x+3, y+3, 0, 2) = 0;
+					result.draw_circle(x + 3, y + 3, 2, red);
 				}
 				
 			}
 		}
-		
 		string name = to_string(id) + "final_test1.bmp";
 		const char* input = name.c_str();
-		result.display();
+		//result.display();
 		result.save(input);
 		cout << "finish drawCircles" << endl;
 	}
