@@ -1,13 +1,14 @@
 ﻿  main.cpp
-c:\users\sherry\source\repos\circle_1_0\circle_1_0\circledetector.h(44): warning C4244: “参数”: 从“double”转换到“const unsigned int”，可能丢失数据
-c:\users\sherry\source\repos\circle_1_0\circle_1_0\circledetector.h(73): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
-c:\users\sherry\source\repos\circle_1_0\circle_1_0\circledetector.h(74): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
-c:\users\sherry\source\repos\circle_1_0\circle_1_0\circledetector.h(89): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
-c:\users\sherry\source\repos\circle_1_0\circle_1_0\circledetector.h(243): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
-c:\users\sherry\source\repos\circle_1_0\circle_1_0\circledetector.h(244): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+c:\users\sherry\source\repos\circle_1_0\circle_1_0\circledetector.h(56): warning C4244: “参数”: 从“double”转换到“const unsigned int”，可能丢失数据
+c:\users\sherry\source\repos\circle_1_0\circle_1_0\circledetector.h(66): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+c:\users\sherry\source\repos\circle_1_0\circle_1_0\circledetector.h(86): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+c:\users\sherry\source\repos\circle_1_0\circle_1_0\circledetector.h(87): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+c:\users\sherry\source\repos\circle_1_0\circle_1_0\circledetector.h(102): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+c:\users\sherry\source\repos\circle_1_0\circle_1_0\circledetector.h(181): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+c:\users\sherry\source\repos\circle_1_0\circle_1_0\circledetector.h(182): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
   正在生成代码
-  7 of 1128 functions ( 0.6%) were compiled, the rest were copied from previous compilation.
+  2 of 1128 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    7 functions had inline decision re-evaluated but remain unchanged
+    4 functions had inline decision re-evaluated but remain unchanged
   已完成代码的生成
   circle_1_0.vcxproj -> C:\Users\Sherry\source\repos\circle_1_0\x64\Release\circle_1_0.exe
