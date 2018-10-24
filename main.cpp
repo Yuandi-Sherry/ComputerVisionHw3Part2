@@ -11,11 +11,11 @@ int main()
 		string name = to_string(i) + ".bmp";
 		const char* input = name.c_str();
 		CImg<unsigned char> originalImg(input);
-		/*string edge_origin = to_string(i) + "edge_test1.bmp";
+		string edge_origin = to_string(i) + "edge_test1.bmp";
 		input = edge_origin.c_str();
-		CImg<unsigned char> edgeImg(input); */
-		canny answer = canny(originalImg, 0.8, 150);
-		CircleDetector houghTransform = CircleDetector(answer.getResult(), originalImg, i);
+		CImg<unsigned char> edgeImg(input); 
+		//canny answer = canny(originalImg, 0.8, 300);
+		CircleDetector houghTransform = CircleDetector(edgeImg, originalImg, i);
 	}
 	/*for (int i = 1; i <= 6; i++) {
 		string name = to_string(i) + ".bmp";

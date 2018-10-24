@@ -116,7 +116,7 @@ public:
 							if (r*0.5 > potentialCircle[k].r) { // 两圆形大小差距过大，小圆直接被替换
 								push = false;
 								potentialCircle[k] = point(i, j, r);
-							} else if(sqrt(pow(i - potentialCircle[k].x, 2) + pow(j - potentialCircle[k].y, 2)) < 0.9*(potentialCircle[k].r + r)) { // 两圆形明显相交
+							} else if(sqrt(pow(i - potentialCircle[k].x, 2) + pow(j - potentialCircle[k].y, 2)) < 0.9 * (potentialCircle[k].r + r)) { // 两圆形明显相交
 								push = false;
 								if (accumulation(i, j, r/ step, 0) > accumulation(potentialCircle[k].x, potentialCircle[k].y, potentialCircle[k].r/ step, 0)) { // 保留票数多的
 									potentialCircle[k] = point(i, j, r);
