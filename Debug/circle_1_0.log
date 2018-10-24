@@ -1,0 +1,31 @@
+﻿  pch.cpp
+  canny.cpp
+c:\users\sherry\source\repos\circle_1_0\circle_1_0\canny.cpp(80): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+c:\users\sherry\source\repos\circle_1_0\circle_1_0\canny.cpp(86): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
+c:\users\sherry\source\repos\circle_1_0\circle_1_0\canny.cpp(88): warning C4244: “+=”: 从“_Ty”转换到“float”，可能丢失数据
+          with
+          [
+              _Ty=double
+          ]
+c:\users\sherry\source\repos\circle_1_0\circle_1_0\canny.cpp(106): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\sherry\source\repos\circle_1_0\circle_1_0\canny.cpp(107): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\sherry\source\repos\circle_1_0\circle_1_0\canny.cpp(111): warning C4244: “=”: 从“double”转换到“T”，可能丢失数据
+          with
+          [
+              T=unsigned char
+          ]
+c:\users\sherry\source\repos\circle_1_0\circle_1_0\canny.cpp(148): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\sherry\source\repos\circle_1_0\circle_1_0\canny.cpp(149): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\sherry\source\repos\circle_1_0\circle_1_0\canny.cpp(160): warning C4244: “=”: 从“double”转换到“T”，可能丢失数据
+          with
+          [
+              T=unsigned char
+          ]
+c:\users\sherry\source\repos\circle_1_0\circle_1_0\canny.cpp(166): warning C4244: “=”: 从“double”转换到“T”，可能丢失数据
+          with
+          [
+              T=unsigned char
+          ]
+c:\users\sherry\source\repos\circle_1_0\circle_1_0\canny.cpp(423): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+  main.cpp
+c:\users\sherry\source\repos\circle_1_0\circle_1_0\main.cpp(31): fatal error C1010: 在查找预编译头时遇到意外的文件结尾。是否忘记了向源中添加“#include "pch.h"”?
