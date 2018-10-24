@@ -51,7 +51,7 @@ public:
 			}
 		}
 		vote();
-		filterThershold(maxR /5.5);
+		filterThershold(maxR /10);
 		//findLocalMaximums();
 		drawCircles();
 	}
