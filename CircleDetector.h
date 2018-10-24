@@ -38,7 +38,7 @@ public:
 		this->height = img.height();
 		maxR = min(width , height)/2; 
 		dia = sqrt(pow(height,2) + pow(width, 2))/2;
-		step = maxR / 25;
+		step = maxR / 100;
 		//cout << "maxR " << maxR << endl; 
 		//cout << "dia " << dia << endl;
 		accumulation = CImg<unsigned char>(width, height, ceil(maxR/step) + 1,1);
@@ -50,7 +50,7 @@ public:
 			}
 		}
 		vote();
-		filterThershold(maxR /10);
+		filterThershold(maxR /30);
 		filter();
 		end = clock();
 		drawCircles();

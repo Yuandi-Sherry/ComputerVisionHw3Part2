@@ -35,8 +35,5 @@
     <ClCompile Include="canny.cpp">
       <Filter>头文件\源文件</Filter>
     </ClCompile>
-    <ClCompile Include="CircleDetector.cpp">
-      <Filter>头文件\源文件</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>
