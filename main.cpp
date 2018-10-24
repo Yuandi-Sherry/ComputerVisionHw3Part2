@@ -7,7 +7,7 @@ using namespace cimg_library;
 using namespace std;
 int main()
 {
-	for (int i =1; i < 2; i++) {
+	for (int i =2; i < 3; i++) {
 		string name = to_string(i) + ".bmp";
 		const char* input = name.c_str();
 		CImg<unsigned char> originalImg(input);

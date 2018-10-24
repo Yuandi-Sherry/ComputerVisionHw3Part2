@@ -20,6 +20,7 @@ private:
 	int width;
 	int height;
 	int maxR;
+	int step;
 	CImg<unsigned char> img;
 	CImg<unsigned char> result;
 	vector<point> potentialCircle;
@@ -34,14 +35,15 @@ public:
 		this->id = id;
 		this->width = img.width();
 		this->height = img.height();
-		maxR = min(width , height)/2;
+		maxR = min(width , height)/2; 
+		step = maxR / 50;
 		cout << "maxR " << maxR << endl; 
-		accumulation = CImg<unsigned char>(width, height, ceil(maxR/5) + 1,1);
+		accumulation = CImg<unsigned char>(width, height, ceil(maxR/step) + 1,1);
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
-				for (int k = 0; k < maxR; k = k+5) {
+				for (int k = 0; k < maxR; k = k+step) {
 					//cout << k << endl;
-					accumulation(i,j,k/5,0) = 0;
+					accumulation(i,j,k/ step,0) = 0;
 				}
 			}
 		}
@@ -62,13 +64,13 @@ public:
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
 				if (img(i, j) == 255) {
-					for (int r = 0; r < maxR; r = r+5) {
+					for (int r = 0; r < maxR; r = r+ step) {
 						// 遍历可能出现圆心点的区域
 						for (int theta = 0; theta < 360; theta++) {
 							int x = i + r * cos(theta*M_PI / 180);
 							int y = j + r * sin(theta*M_PI / 180);
 							if (x >= 0 && x < width && y >= 0 && y < height)
-								accumulation(x, y, r/5, 0)++;
+								accumulation(x, y, r/ step, 0)++;
 						}
 					}
 				}
@@ -79,10 +81,10 @@ public:
 
 	void filterThershold(int threshold) {
 		cout << "filterThershold" << endl;
-		for (int r = 0; r < maxR;  r = r + 5) {
+		for (int r = 0; r < maxR;  r = r + step) {
 			for (int i = r; i < width - r; i++) {
 				for (int j = r; j < height - r; j++) {
-					if(accumulation(i,j,r/5,0) > threshold) {
+					if(accumulation(i,j,r/ step,0) > threshold) {
 						boolean push = true;
 						for (int k = 0; k < potentialCircle.size(); k++) {
 							if (r*0.8 > potentialCircle[k].r) { // 两圆形大小差距过大，小圆直接被替换
@@ -90,7 +92,7 @@ public:
 								potentialCircle[k] = point(i, j, r);
 							} else if(sqrt(pow(i - potentialCircle[k].x, 2) + pow(j - potentialCircle[k].y, 2)) < 0.9*(potentialCircle[k].r + r)) { // 两圆形明显相交
 								push = false;
-								if (accumulation(i, j, r/5, 0) > accumulation(potentialCircle[k].x, potentialCircle[k].y, potentialCircle[k].r/5, 0)) { // 保留票数多的
+								if (accumulation(i, j, r/ step, 0) > accumulation(potentialCircle[k].x, potentialCircle[k].y, potentialCircle[k].r/ step, 0)) { // 保留票数多的
 									potentialCircle[k] = point(i, j, r);
 								}
 							}
