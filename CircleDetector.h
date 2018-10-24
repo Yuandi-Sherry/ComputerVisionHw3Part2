@@ -1,5 +1,6 @@
 #include <iostream>
 #include "canny.h"
+#include <time.h>     
 using namespace std;
 using namespace cimg_library;
 #define M_PI 3.14159265358979323846
@@ -26,11 +27,10 @@ private:
 	CImg<unsigned char> result;
 	vector<point> potentialCircle;
 	vector<point> selectedCircle;
-
-	
-
+	clock_t  start, end;
 public:
 	CircleDetector(CImg<unsigned char> img, CImg<unsigned char> originalImg, int id) {
+		start = clock();
 		this->result = originalImg;
 		this->img = img;
 		this->id = id;
@@ -39,20 +39,20 @@ public:
 		maxR = min(width , height)/2; 
 		dia = sqrt(pow(height,2) + pow(width, 2))/2;
 		step = maxR / 25;
-		cout << "maxR " << maxR << endl; 
-		cout << "dia " << dia << endl;
+		//cout << "maxR " << maxR << endl; 
+		//cout << "dia " << dia << endl;
 		accumulation = CImg<unsigned char>(width, height, ceil(maxR/step) + 1,1);
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
 				for (int k = 0; k < maxR; k = k+step) {
-					//cout << k << endl;
 					accumulation(i,j,k/ step,0) = 0;
 				}
 			}
 		}
 		vote();
 		filterThershold(maxR /10);
-		//findLocalMaximums();
+		filter();
+		end = clock();
 		drawCircles();
 	}
 
@@ -134,8 +134,36 @@ public:
 
 	}
 
+	void filter() {
+		int count = 0;
+		for (int i = 0; i < potentialCircle.size(); ) {
+			bool eraseI = false;
+			for (int j = i + 1; j < potentialCircle.size(); ) {
+				//判断两圆相交
+				if (sqrt(pow(potentialCircle[i].x - potentialCircle[j].x, 2) + pow(potentialCircle[i].y - potentialCircle[j].y, 2)) < 0.9 * (double)(potentialCircle[i].r + potentialCircle[j].r)) { // 两圆形明显相交
+					count++;
+					// 当圆i的票数比圆j多
+					if (accumulation(potentialCircle[i].x, potentialCircle[i].y, potentialCircle[i].r / step, 0) > accumulation(potentialCircle[j].x, potentialCircle[j].y, potentialCircle[j].r / step, 0)) { // 保留票数多的
+						potentialCircle.erase(potentialCircle.begin() + j);
+						continue;
+					}
+					else {
+						potentialCircle.erase(potentialCircle.begin() + i);
+						eraseI = true;
+						break;
+					}
+				}
+				j++;
+			}
+			if (!eraseI) {
+				i++;
+			}
+		}
+		//cout << "count in filter " << count << endl;
+	}
+
 	void findLocalMaximums() {
-		cout << "findLocalMaximums" << endl;
+		//cout << "findLocalMaximums" << endl;
 
 		for (int i = 0; i < potentialCircle.size(); ) {
 			bool iChange = false;
@@ -225,6 +253,10 @@ public:
 		//result.display();
 		result.save(input);
 		cout << "finish drawCircles" << endl;
+		cout << "end" << end << endl;
+		cout << "start" << start << endl;
+		cout << "CLK_TCK" << CLK_TCK << endl;
+		cout << "Hough Transform用时：" << (end - start) / CLK_TCK << endl;
 	}
 
 };
